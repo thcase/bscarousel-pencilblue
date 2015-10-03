@@ -1,2 +1,2 @@
-# bs-carousel-pencilblue
+# bscarousel-pencilblue
 Bootstrap Carousel PencilBlue Plugin
