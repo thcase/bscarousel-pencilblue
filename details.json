@@ -40,6 +40,6 @@
         "ACCESS_MANAGING_EDITOR": []
     },
     "main_module": {
-        "path": "bs-carousel.js"
+        "path": "bscarousel.js"
     }
 }
