@@ -1,45 +1,27 @@
 {
-    "uid": "bs-carousel",
-    "name": "Bootstrap Carousel Plugin",
-    "description": "Adds a bootstrap Carousel template page to the site.",
-    "version": "0.0.1",
+    "uid": "bscarousel-pencilblue",
+    "name": "Bootstrap Carousel",
+	"description": "Bootstrap based Image Carousel Plugin for PencilBlue",
+    "version": "0.1.0",
     "pb_version": "0.4.x",
-    "author": {
-        "name": "thcase",
-        "email": "info@thcase.com",
-        "website": "http://thcase.com",
-        "contributors": [
-            {
-                "name": "Thomas H. Case",
-                "email": "thomas@thcase.com"
-            }
-        ]
-    },
-    "settings": [
-        {
-            "name": "interval",
-            "value": "5000"
-        },
-        {
-            "name": "pause",
-            "value": "hover"
-        },
-        {
-            "name":"wrap",
-            "value":"true"
-        },
-        {
-            "name":"captions",
-            "value":"true"
-        }
-    ],
-    "permissions": {
-        "ACCESS_USER": [],
-        "ACCESS_WRITER": [],
-        "ACCESS_EDITOR": [],
-        "ACCESS_MANAGING_EDITOR": []
-    },
-    "main_module": {
-        "path": "bscarousel.js"
-    }
+	"author": {
+		"name": "Thomas H. Case",
+		"email": "thomas@thcase.com",
+		"website": "http://thcase.com",
+		"contributors": []
+	},
+    "settings": [],
+	"permissions": {
+		"ACCESS_USER": [],
+		"ACCESS_WRITER": [],
+		"ACCESS_EDITOR": [],
+		"ACCESS_MANAGING_EDITOR": []
+	},
+	"main_module": {
+		"path": "bscarousel.js"
+	},
+	"theme": {
+		"settings": [],
+		"content_templates": []
+	}
 }
