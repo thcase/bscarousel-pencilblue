@@ -248,14 +248,13 @@ module.exports = function(pb) {
    * @param {Function} cb
    */
   BSCarouselController.prototype.loadContent = function (galleryCallback) {
-    var service = PluginService.getService('BSCarouselService','bscarousel-pencilblue');
     var options = {};
     var vars = this.pathvars;
     if(vars != undefined && vars.id != undefined) {
-      service.getById(vars.id,options,galleryCallback);
+      CarouselService.getById(vars.id,options,galleryCallback);
     } else {
       options.where = {"showGallery":{$eq:true}};
-      service.getAll(options,galleryCallback);
+      CarouselService.getAll(options,galleryCallback);
     }
   }
   
