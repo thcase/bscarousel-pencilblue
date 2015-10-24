@@ -1,3 +1,9 @@
+^tmp_head^
+<ol class="breadcrumb">
+	<li><a href="/gallery">Galleries</a></li>
+	<li>^bscarousel_name^</li>
+</ol>
+<h1>^bscarousel_name^</h1>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 	<ol class="carousel-indicators">
 		^bscarousel_indicators^
@@ -15,3 +21,10 @@
 		<span class="sr-only">Next</span>
 	</a>
 </div>
+<script type="text/javascript">
+var stylesheet = '^bscarousel_stylesheet^';
+if(stylesheet.charAt(0) != '^' && stylesheet.charAt(stylesheet.length-1) != '^') {
+	$('head').append('<link rel="stylesheet" href="'+ stylesheet + '" type="text/css" />');
+}
+</script>
+^tmp_footer^

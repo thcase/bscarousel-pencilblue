@@ -1,19 +1,21 @@
 /**
- * Copyright (C) 2015 Thomas H Case
- * This code is licensed under MIT license (see the LICENSE file for details)
+ * Bootstrap Carousel PencilBlue Plugin Module
+ * @author Thomas H Case
+ * @copyright Thomas H Case 2015 
+ * @license This code is licensed under MIT license (see the LICENSE file for details)
  */
 module.exports = function BSCarouselModule(pb) {
     
     //pb dependencies
     var util = pb.util;
-    
+ 
     /**
      * @private
      * @static
      * @readonly
      * @property GALLERY_OBJ_TYPE
      */
-    var GALLERY_OBJ_TYPE = 'bscarousel_gallery';
+    var GALLERY_OBJ_TYPENAME = 'bscarousel_gallery';
 
     /**
      *
@@ -65,32 +67,34 @@ module.exports = function BSCarouselModule(pb) {
     BSCarousel.onInstall = function(cb) {
         var cos = new pb.CustomObjectService();
         
-        this.setupGalleriesType = function() {
-            cos.loadTypeByName(GALLERY_OBJ_TYPE, function(err, galleryType) {
-                if (galleryType) {
-                    return cb(null, true);
-                }
-                
-                var galleryValues = {
-                    name: GALLERY_OBJ_TYPE,
-                    fields: {
-                        name: FIELD_TYPE_TEXT,
-                        description: FIELD_TYPE_WYSIWYG,
-                        showGallery: FIELD_TYPE_BOOLEAN,
-                        images: {
-                            field_type: 'child_objects',
-                            object_type: 'media'
-                        }
+        cos.loadTypeByName(GALLERY_OBJ_TYPENAME, function(err, galleryType) {
+            // throw error back to cb if exists
+            if(err) {
+                cb(err,null);
+            }
+            // Define Custom Object
+            var galleryObjectDefinition = {
+                name: GALLERY_OBJ_TYPENAME,
+                fields: {
+                    name: FIELD_TYPE_TEXT,
+                    description: FIELD_TYPE_WYSIWYG,
+                    showGallery: FIELD_TYPE_BOOLEAN,
+                    keywords: FIELD_TYPE_TEXT,
+                    galleryImage: {
+                        field_type: 'peer_object',
+                        object_type: 'media'
+                    },
+                    images: {
+                        field_type: 'child_objects',
+                        object_type: 'media'
                     }
                 }
-                
-                cos.saveType(galleryValues, function(err, galleryType) {
-                    cb(null, true);
-                });
+            }
+            // Save (create or update) Object
+            cos.saveType(galleryObjectDefinition, function(err, galleryType) {
+                cb(null, true);
             });
-        };
-        
-        this.setupGalleriesType();
+        });
     };
 
     /**
@@ -114,9 +118,9 @@ module.exports = function BSCarouselModule(pb) {
      * The result should be TRUE on success and FALSE on failure
      */
     BSCarousel.onStartup = function(cb) {
-        cb(null, true);
-    };
-
+        cb(null,true)  
+    }
+   
     /**
      * Called when the application is gracefully shutting down.  No guarantees are
      * provided for how much time will be provided the plugin to shut down.

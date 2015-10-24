@@ -10,7 +10,21 @@
 		"website": "http://thcase.com",
 		"contributors": []
 	},
-    "settings": [],
+    "settings": [
+		{
+            "name": "index_page_keywords",
+            "value": "bootstrap,carousel"
+        },
+        {
+            "name": "index_page_description",
+            "value": "This is Bootstrap Carousel Plugin Index Page."
+        },
+		{
+			"name":"gallery_stylesheet",
+			"value":"/public/bscarousel-pencilblue/css/default.css"
+		}
+		
+	],
 	"permissions": {
 		"ACCESS_USER": [],
 		"ACCESS_WRITER": [],
@@ -19,9 +33,5 @@
 	},
 	"main_module": {
 		"path": "bscarousel.js"
-	},
-	"theme": {
-		"settings": [],
-		"content_templates": []
 	}
 }

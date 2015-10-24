@@ -1,0 +1,18 @@
+.bscarousel-item {
+	width:240px;
+	padding:10px;
+}
+.bscarousel-item-caption {
+	background-color: #333;
+	color: #fff;
+}
+#bscarousel-galleries {
+	position: static;
+	display: flexbox;
+}
+.bscarousel-item img {
+	width:100%;
+}
+.carousel-caption h3 {
+	color: #fff;
+}

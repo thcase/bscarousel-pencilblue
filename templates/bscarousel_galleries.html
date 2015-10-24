@@ -1,3 +1,12 @@
+^tmp_head^
 <div id="bscarousel-galleries">
+	<h1>Galleries</h1>
 	^bscarousel_galleries^
 </div>
+<script type="text/javascript">
+var stylesheet = '^bscarousel_stylesheet^';
+if(stylesheet.charAt(0) != '^' && stylesheet.charAt(stylesheet.length-1) != '^') {
+	$('head').append('<link rel="stylesheet" href="'+ stylesheet + '" type="text/css" />');
+}
+</script>
+^tmp_footer^
