@@ -46,11 +46,14 @@ module.exports = function(pb) {
         self.ts.registerLocal('bscarousel_galleries',function(flag,cb){
             pb.log.debug('Starting to build gallery items render tasks.');
             var tasks = util.getTasks(data.content,function(content,i){
+              pb.log.debug('Gallery Item Task added for: %s',content[i].name);
               return function(callback){
+                pb.log.debug('Calling RenderGalleryItem for: %s',content[i].name);
                 self.renderGalleryItem(content[i],i,callback);
               };
             });
             async.parallel(tasks,function(err,results){
+              pb.log.debug('Done with Gallery Items tasks, building Template Value');
               cb(err,new pb.TemplateValue(results.join(''),false));
             });
         });
