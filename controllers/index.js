@@ -44,6 +44,7 @@ module.exports = function(pb) {
         self.registerLocalVariables(settings,data.nav);
         // Get Galleries and display
         self.ts.registerLocal('bscarousel_galleries',function(flag,cb){
+            pb.log.debug('Starting to build gallery items render tasks.');
             var tasks = util.getTasks(data.content,function(content,i){
               return function(callback){
                 self.renderGalleryItem(content[i],i,callback);
@@ -53,6 +54,7 @@ module.exports = function(pb) {
               cb(err,new pb.TemplateValue(results.join(''),false));
             });
         });
+        pb.log.debug('Loading galleries template');
         self.ts.load('bscarousel_galleries',function(err,template) {
           if(util.isError(err)) {
               content.content = '';
@@ -169,7 +171,7 @@ module.exports = function(pb) {
   BSCarouselController.prototype.renderGalleryItem = function(item,index,cb){ 
     var self = this;
     var ats = new pb.TemplateService(self.ls);
-    
+    pb.log.debug('Rendering Gallery Item: %s',item.name);
     ats.registerLocal('gallery_item_id',item._id);
     ats.registerLocal('gallery_item_name',item.name)
     if(item.galleryImage) {
@@ -179,6 +181,7 @@ module.exports = function(pb) {
         })
       });
     }
+    pb.log.debug('Loading Gallery Item Template for Item: %s',item.name)
     ats.load('bscarousel_galleryitem',function(err,template){
       if(util.isError(err)) {
         cb(err,'');
