@@ -18,7 +18,7 @@ module.exports = function(pb) {
      * @constructor
      */
 	function BSCarouselService() {
-	};
+	}
 	
 	/**
      * The name of the Custom Object Type
