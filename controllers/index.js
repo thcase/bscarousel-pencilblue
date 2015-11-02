@@ -215,6 +215,9 @@ module.exports = function(pb) {
       ats.registerLocal('bscarousel_item_active',activeClass);
       ats.registerLocal('bscarousel_item_location',media.location);
       ats.registerLocal('bscarousel_item_name',media.name);
+      if(!media.caption) {
+        media.caption = '';
+      }
       ats.registerLocal('bscarousel_item_caption',media.caption)
       ats.load('bscarousel_galleryimage',function(err,template){
         if(util.isError(err)){

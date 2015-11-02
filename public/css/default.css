@@ -7,8 +7,9 @@
 	color: #fff;
 }
 #bscarousel-galleries {
-	position: static;
-	display: flexbox;
+	position: relative;
+	display: flex;
+	flex-flow: row wrap;
 }
 .bscarousel-item img {
 	width:100%;
