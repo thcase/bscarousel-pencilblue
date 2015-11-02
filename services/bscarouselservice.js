@@ -84,6 +84,7 @@ module.exports = function(pb) {
                if(err) {
                    cb(err,null);
                } 
+               pb.log.debug('Found [%s] gallery items',result.length);
                cb(null,result);
             });
         });
