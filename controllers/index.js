@@ -259,6 +259,7 @@ module.exports = function(pb) {
     if(vars != undefined && vars.id != undefined) {
       CarouselService.getById(vars.id,options,galleryCallback);
     } else {
+      pb.log.debug('Getting Gallery Items');
       options.where = {"showGallery":{$eq:true}};
       CarouselService.getAll(options,galleryCallback);
     }

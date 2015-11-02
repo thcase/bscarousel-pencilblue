@@ -80,6 +80,7 @@ module.exports = function(pb) {
             if(err){
                 cb(err,null);
             }
+            pb.log.debug('Querying for Gallery items with options [%s] and object type [%s]',JSON.stringify(options),JSON.stringify(objType));
             cos.findByType(objType,options,function(err,result){
                if(err) {
                    cb(err,null);
@@ -100,8 +101,8 @@ module.exports = function(pb) {
 	      if(err){
 		      cb(err,null);
 	      }
-	      var objectType = customObject.type;
-	      cb(null,objectType);
+	      pb.log.debug('Found Custom Object: %s',JSON.stringify(customObject));
+	      cb(null,customObject);
       });
     }
     
