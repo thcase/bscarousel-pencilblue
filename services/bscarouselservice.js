@@ -28,7 +28,7 @@ module.exports = function(pb) {
      * @property TYPE
      * @type {String}
      */
-    var CUSTOM_OBJ_TYPENAME = 'bscarousel_gallery';
+    var CUSTOM_OBJ_TYPENAME = 'Galleries';
     
     /**
      * The name the service
@@ -80,12 +80,10 @@ module.exports = function(pb) {
             if(err){
                 cb(err,null);
             }
-            pb.log.debug('Querying for Gallery items with options [%s] and object type [%s]',JSON.stringify(options),JSON.stringify(objType));
             cos.findByType(objType,options,function(err,result){
                if(err) {
                    cb(err,null);
                } 
-               pb.log.debug('Found [%s] gallery items',result.length);
                cb(null,result);
             });
         });
@@ -101,7 +99,6 @@ module.exports = function(pb) {
 	      if(err){
 		      cb(err,null);
 	      }
-	      pb.log.debug('Found Custom Object: %s',JSON.stringify(customObject));
 	      cb(null,customObject);
       });
     }

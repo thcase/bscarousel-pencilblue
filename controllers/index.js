@@ -44,20 +44,15 @@ module.exports = function(pb) {
         self.registerLocalVariables(settings,data.nav);
         // Get Galleries and display
         self.ts.registerLocal('bscarousel_galleries',function(flag,cb){
-            pb.log.debug('Starting to build gallery items render tasks.');
             var tasks = util.getTasks(data.content,function(content,i){
-              pb.log.debug('Gallery Item Task added for: %s',content[i].name);
               return function(callback){
-                pb.log.debug('Calling RenderGalleryItem for: %s',content[i].name);
                 self.renderGalleryItem(content[i],i,callback);
               };
             });
             async.parallel(tasks,function(err,results){
-              pb.log.debug('Done with Gallery Items tasks, building Template Value');
               cb(err,new pb.TemplateValue(results.join(''),false));
             });
         });
-        pb.log.debug('Loading galleries template');
         self.ts.load('bscarousel_galleries',function(err,template) {
           if(util.isError(err)) {
               content.content = '';
@@ -78,7 +73,6 @@ module.exports = function(pb) {
    */
   BSCarouselController.prototype.renderGalleryPage = function(cb){
     var self = this;
-    var id = this.pathVars.id;
     var content =  {
         content_type: "text/html",
         code: 200
@@ -174,7 +168,6 @@ module.exports = function(pb) {
   BSCarouselController.prototype.renderGalleryItem = function(item,index,cb){ 
     var self = this;
     var ats = new pb.TemplateService(self.ls);
-    pb.log.debug('Rendering Gallery Item: %s',item.name);
     ats.registerLocal('gallery_item_id',item._id);
     ats.registerLocal('gallery_item_name',item.name)
     if(item.galleryImage) {
@@ -184,7 +177,6 @@ module.exports = function(pb) {
         })
       });
     }
-    pb.log.debug('Loading Gallery Item Template for Item: %s',item.name)
     ats.load('bscarousel_galleryitem',function(err,template){
       if(util.isError(err)) {
         cb(err,'');
@@ -262,7 +254,6 @@ module.exports = function(pb) {
     if(vars != undefined && vars.id != undefined) {
       CarouselService.getById(vars.id,options,galleryCallback);
     } else {
-      pb.log.debug('Getting Gallery Items');
       options.where = {"showGallery":{$eq:true}};
       CarouselService.getAll(options,galleryCallback);
     }

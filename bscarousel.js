@@ -15,7 +15,7 @@ module.exports = function BSCarouselModule(pb) {
      * @readonly
      * @property GALLERY_OBJ_TYPE
      */
-    var GALLERY_OBJ_TYPENAME = 'bscarousel_gallery';
+    var GALLERY_OBJ_TYPENAME = 'Galleries';
 
     /**
      *
@@ -66,14 +66,13 @@ module.exports = function BSCarouselModule(pb) {
      */
     BSCarousel.onInstall = function(cb) {
         var cos = new pb.CustomObjectService();
-        
         cos.loadTypeByName(GALLERY_OBJ_TYPENAME, function(err, galleryType) {
             // throw error back to cb if exists
-            if(err) {
-                cb(err,null);
+            if(util.isError(err) || galleryType) {
+                cb(err,!util.isError(err));
             }
             // Define Custom Object
-            var galleryObjectDefinition = {
+            var galleryDefinition = {
                 name: GALLERY_OBJ_TYPENAME,
                 fields: {
                     name: FIELD_TYPE_TEXT,
@@ -91,8 +90,8 @@ module.exports = function BSCarouselModule(pb) {
                 }
             }
             // Save (create or update) Object
-            cos.saveType(galleryObjectDefinition, function(err, galleryType) {
-                cb(null, true);
+            cos.saveType(galleryDefinition, function(err, galleryType) {
+                cb(err, !util.isError(err));
             });
         });
     };
