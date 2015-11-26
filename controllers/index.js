@@ -64,7 +64,7 @@ module.exports = function(pb) {
         });
       });
     });
-  }
+  };
 
   /**
    * Renders Gallery Page
@@ -122,7 +122,7 @@ module.exports = function(pb) {
         });
       });
     });
-  }
+  };
   
   /**
    * Registers Template items
@@ -157,7 +157,8 @@ module.exports = function(pb) {
     self.ts.registerLocal('current_url', self.req.url);
     self.ts.registerLocal('navigation', new pb.TemplateValue(nav.navigation, false));
     self.ts.registerLocal('account_buttons', new pb.TemplateValue(nav.accountButtons, false));
-  }
+  };
+  
   /**
    * Renders Gallery Item
    * @method renderGalleryItem
@@ -184,7 +185,7 @@ module.exports = function(pb) {
         cb(null,template);
       }
     })
-  }
+  };
   
   /**
    * Renderer for individual Gallery Image in a Carousel
@@ -219,7 +220,7 @@ module.exports = function(pb) {
         }
       });
     });
-  }
+  };
   
   /**
    * Gathers Data for page
@@ -239,9 +240,9 @@ module.exports = function(pb) {
       content: function(callback){
         self.loadContent(callback);
       }
-    }
+    };
     async.parallel(tasks,cb);
-  }
+  };
   
   /**
    * Loads Page Content
@@ -257,13 +258,16 @@ module.exports = function(pb) {
       options.where = {"showGallery":{$eq:true}};
       CarouselService.getAll(options,galleryCallback);
     }
-  }
+  };
   
   /**
    * Retrieves Navigation
    */
   BSCarouselController.prototype.getNavigation = function(cb) {
-      TopMenu.getTopMenu(this.session, this.ls, function(themeSettings, navigation, accountButtons) {
+      var options = {
+          currUrl: "/gallery/"
+      }
+      TopMenu.getTopMenu(this.session, this.ls, options, function(themeSettings, navigation, accountButtons) {
           TopMenu.getBootstrapNav(navigation, accountButtons, function(navigation, accountButtons) {
               cb(themeSettings, navigation, accountButtons);
           });
@@ -287,13 +291,7 @@ module.exports = function(pb) {
       content_type: 'text/html'
     },{
       method: 'get',
-      path: "/gallery/*",
-      auth_required: false,
-      handler:'renderIndexPage',
-      content_type: 'text/html'
-    },{
-      method: 'get',
-      path: "/gallery",
+      path: "/gallery/",
       auth_required: false,
       handler:'renderIndexPage',
       content_type: 'text/html'
